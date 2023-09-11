@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Popis Usluga</title>
+</head>
+<body>
+<h1>Popis Usluga</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Naziv</th>
+    <th>Ordinacija</th>
+    <th>Cijena</th>
+  </tr>
+  </thead>
+  <tbody>
+  <!-- Ovdje možete koristiti Thymeleaf za iteraciju kroz popis usluga -->
+  <tr th:each="usluga : ${usluge}">
+    <td th:text="${usluga.id}"></td>
+    <td th:text="${usluga.naziv}"></td>
+    <td th:text="${usluga.ordinacija}"></td>
+    <td th:text="${usluga.cijena}"></td>
+  </tr>
+  </tbody>
+</table>
+
+<!-- Dodajte gumb za povratak na početnu stranicu ili drugu navigaciju po potrebi -->
+<a href="/">Povratak na početnu stranicu</a>
+</body>
+</html>

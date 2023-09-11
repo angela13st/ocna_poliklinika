@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil pacijenta</title>
+</head>
+<body>
+<h2>Profil pacijenta</h2>
+
+<!-- Prikaz podataka o pacijentu -->
+<div>
+    <h3>Podaci o pacijentu</h3>
+    <p>Ime: <span th:text="${pacijent.ime}"></span></p>
+    <p>Prezime: <span th:text="${pacijent.prezime}"></span></p>
+    <p>OIB: <span th:text="${pacijent.oib}"></span></p>
+    <p>Adresa: <span th:text="${pacijent.adresa}"></span></p>
+    <p>Kontakt broj: <span th:text="${pacijent.kontakt}"></span></p>
+    <p>Email: <span th:text="${pacijent.email}"></span></p>
+</div>
+
+<!-- Prikaz pregleda pacijenta -->
+<div>
+    <h3>Moji pregledi</h3>
+    <table>
+        <thead>
+        <tr>
+            <th>Datum</th>
+            <th>Vrsta pregleda</th>
+            <th>Doktor</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Iterirajte kroz popis pregleda pacijenta i prikažite ih -->
+        <tr th:each="pregled : ${pregledi}">
+            <td th:text="${pregled.datum}"></td>
+            <td th:text="${pregled.vrstaPregleda}"></td>
+            <td th:text="${pregled.doktor.ime}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Omogućite izmjenu profila -->
+<div>
+    <h3>Izmjena profila</h3>
+    <form method="post" th:action="@{/izmjeniProfil}">
+        <div>
+            <label for="ime">Ime:</label>
+            <input type="text" id="ime" name="ime" th:value="${pacijent.ime}" required>
+        </div>
+        <div>
+            <label for="prezime">Prezime:</label>
+            <input type="text" id="prezime" name="prezime" th:value="${pacijent.prezime}" required>
+        </div>
+        <div>
+            <label for="adresa">Adresa:</label>
+            <input type="text" id="adresa" name="adresa" th:value="${pacijent.adresa}" required>
+        </div>
+        <div>
+            <label for="kontakt">Kontakt broj:</label>
+            <input type="text" id="kontakt" name="kontakt" th:value="${pacijent.kontakt}" required>
+        </div>
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" th:value="${pacijent.email}" required>
+        </div>
+        <div>
+            <button type="submit">Spremi izmjene</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

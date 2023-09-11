@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Naručivanje</title>
+</head>
+<body>
+<h2>Odaberite pregled i termin</h2>
+<form method="post" action="/potvrda-narudzbe">
+    <div>
+        <label for="pregled">Odaberite pregled:</label>
+        <select id="pregled" name="pregled" required>
+            <option value="pregled1">Kompletni očni pregled</option>
+            <option value="pregled2">Kontrola dioptrije</option>
+        </select>
+    </div>
+    <div>
+        <label for="termin">Odaberite termin</label>
+        <br>
+        <label for="termin">Odaberite datum (GGGG-MM-DD) :</label>
+        <input type="text" id="datum" name="datum" required>
+        <br>
+        <label for="termin">Odaberite vrijeme (HH:MM) :</label>
+        <input type="text" id="sat" name="sat" required>
+        <!-- Dodajte logiku za odabir termina -->
+    </div>
+    <div>
+        <button type="submit">Potvrdi narudžbu</button>
+    </div>
+</form>
+</body>
+</html>
