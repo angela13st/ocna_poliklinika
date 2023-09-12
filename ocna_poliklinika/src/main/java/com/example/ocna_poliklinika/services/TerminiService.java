@@ -1,6 +1,5 @@
 package com.example.ocna_poliklinika.services;
 
-import com.example.ocna_poliklinika.controllers.TerminiController;
 import com.example.ocna_poliklinika.models.Doktor;
 import com.example.ocna_poliklinika.models.Termini;
 import com.example.ocna_poliklinika.repositories.TerminiRepository;
@@ -15,12 +14,9 @@ public class TerminiService {
 
     private final TerminiRepository terminiRepository;
 
-    private final TerminiController terminiController;
-
     @Autowired
-    public TerminiService(TerminiRepository terminiRepository, TerminiController terminiController) {
+    public TerminiService(TerminiRepository terminiRepository) {
         this.terminiRepository = terminiRepository;
-        this.terminiController = terminiController;
     }
 
     public List<Termini> sviTermini() {
@@ -50,7 +46,7 @@ public class TerminiService {
     public boolean imaTermin(Doktor doktor, String datum, String sat) {
         // Prvo dohvatimo sve termine za određenog doktora
         Long doktorId = doktor.getId();
-        Iterable<Termini> terminiDoktora = terminiController.terminiZaDoktora(doktorId);
+        Iterable<Termini> terminiDoktora = dohvatiTerminiZaDoktora(doktorId);
 
         // Zatim provjerimo svaki termin da li se poklapa s zadanim datumom i satom
         for (Termini termin : terminiDoktora) {

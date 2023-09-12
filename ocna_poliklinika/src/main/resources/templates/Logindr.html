@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Prijava</title>
+</head>
+<body>
+<h2>Prijava</h2>
+<form method="post" th:action="@{/login}">
+  <div>
+    <label for="username">Korisničko ime:</label>
+    <input type="text" id="username" name="username" required>
+  </div>
+  <div>
+    <label for="password">Lozinka:</label>
+    <input type="password" id="password" name="password" required>
+  </div>
+  <div>
+    <button type="submit" id="loginButton">Prijavi se</button>
+  </div>
+  <a href="/register">Nemate profil? Obrati se administratoru!</a>
+</form>
+
+<script>
+  // Dodajte JavaScript za preusmjeravanje nakon prijave
+  document.getElementById('loginButton').addEventListener('click', function() {
+    // Simulirajte provjeru ispravnosti podataka za prijavu
+    var isLoginSuccessful = true; // Promijenite ovo na temelju stvarne provjere
+
+    if (isLoginSuccessful) {
+      window.location.href = '/doktor';
+    }
+  });
+</script>
+</body>
+</html>

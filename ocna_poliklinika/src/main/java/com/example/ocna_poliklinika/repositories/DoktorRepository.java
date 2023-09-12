@@ -6,5 +6,8 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface DoktorRepository extends JpaRepository<Doktor, Long> {
+    Doktor findByUsername(String username);
+    //Doktor dohvatiDoktoraPoUsername(String username);
     // Dodatne metode za pristup podacima doktora, ako su potrebne
 }
+

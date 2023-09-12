@@ -5,26 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Očna poliklinika</title>
     <style>
-        /* Dodajte ovaj stil za zeleno-plavu boju */
+        /* Stil za zeleno-plavu boju */
+        header {
+            text-align: center; /* Centriranje naslova */
+            background-color: #7FFFD4; /* Zelena boja */
+        }
         header h1 {
             color: #00a3cc; /* Plava boja */
-            background-color: #7FFFD4; /* Zelena boja */
             padding: 10px; /* Dodajte prostor oko naslova */
+        }
+        main {
+            display: flex; /* Koristi fleksibilni layout */
+            justify-content: space-between; /* Rasprostiranje elemenata na dvije strane */
+        }
+        section {
+            width: 45%; /* Širina svake sekcije */
+            padding: 20px; /* Dodajte prostor oko sekcija */
+            border: 1px solid #ccc; /* Dodajte obrub oko sekcija */
+            margin: 10px; /* Dodajte prostor između sekcija */
+        }
+        marquee {
+            background-color: #7FFFD4; /* Zelena boja za marquee pozadinu */
         }
     </style>
 </head>
 <body>
 <header>
-    <h1>Dobrodošli u <span>Očnu Polikliniku</span></h1>
+    <h1><span>Očna poliklinika Vido</span></h1>
+    <marquee>Dobro došli na našu stranicu. Ovdje se možete registrirati ili prijaviti kako biste vidjeli sve funkcionalnosti.</marquee>
 </header>
 <nav>
     <ul>
-        <li><a href="/login">Prijava</a></li>
-        <li><a href="/register">Registracija</a></li>
+        <li><a href="/login">Prijava pacijenta</a></li>
+        <li><a href="/register">Registracija pacijenta</a></li>
+        <li><a href="/logindr">Prijava liječnika</a></li>
     </ul>
 </nav>
 <main>
-    <p>Prijavite se ili registrirajte kako bi se mogli naručiti na pregled</p>
+    <section id="patient-section">
+        <h2>Za pacijente</h2>
+        <p>Prijavite se ili registrirajte kako biste se mogli naručiti na pregled.</p>
+        <a href="/register">Registracija pacijenta</a>
+        <a href="/login">Prijava pacijenta</a>
+    </section>
+    <section id="doctor-section">
+        <h2>Za liječnike</h2>
+        <p>Prijavite se kako biste pristupili rasporedu i pregledima pacijenata.</p>
+        <a href="/logindr">Prijava liječnika</a>
+    </section>
 </main>
 <footer>
     <p>&copy; 2023 Očna Poliklinika</p>
