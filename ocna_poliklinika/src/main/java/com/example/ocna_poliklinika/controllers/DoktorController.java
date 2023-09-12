@@ -1,7 +1,9 @@
 package com.example.ocna_poliklinika.controllers;
 
+import com.example.ocna_poliklinika.dto.UserLoginRequest;
 import com.example.ocna_poliklinika.models.Doktor;
 import com.example.ocna_poliklinika.services.DoktorService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -60,5 +62,17 @@ public class DoktorController {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT); // Vraća status 204 ako je doktor uspješno obrisan
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Vraća status 404 ako doktor nije pronađen za brisanje
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Doktor> loginUser(@RequestBody UserLoginRequest loginRequest, HttpSession session) {
+        Doktor loggedInUser = doktorService.loginUser(loginRequest);
+        if (loggedInUser != null) {
+            // Store the logged-in user in the session
+            session.setAttribute("user", loggedInUser);
+            return new ResponseEntity<>(loggedInUser, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 }

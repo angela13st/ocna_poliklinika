@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @Getter
 @Setter
@@ -33,6 +35,9 @@ public class Pacijent {
     private String email;
     @Column(name = "lozinka", nullable = false)
     private String lozinka;
+
+    @OneToMany(mappedBy = "pacijent", cascade = CascadeType.ALL)
+    private List<Termini> termini;
 
 
 }

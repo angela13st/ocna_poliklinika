@@ -1,5 +1,9 @@
 package com.example.ocna_poliklinika.models;
 
+import com.example.ocna_poliklinika.models.Doktor;
+import com.example.ocna_poliklinika.models.Ordinacija;
+import com.example.ocna_poliklinika.models.Pacijent;
+import com.example.ocna_poliklinika.models.Usluge;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,7 +15,6 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class Termini {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,14 +41,5 @@ public class Termini {
 
     @ManyToOne
     @JoinColumn(name = "idOrdinacija", nullable = false, referencedColumnName = "id")
-    private Ordinacija Ordinacija;
+    private Ordinacija ordinacija;
 }
-
-
-
-
-
-
-
-
-

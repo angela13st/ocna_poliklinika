@@ -1,5 +1,7 @@
 package com.example.ocna_poliklinika.services;
 
+import com.example.ocna_poliklinika.dto.UserLoginRequest;
+import com.example.ocna_poliklinika.models.Doktor;
 import com.example.ocna_poliklinika.models.Pacijent;
 import com.example.ocna_poliklinika.repositories.PacijentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ public class PacijentService {
     public Optional<Pacijent> dohvatiPacijentaPoUsername(String username) {
         return Optional.ofNullable(pacijentRepository.findByUsername(username));
     }
+
+    /*public Long findPatientIdByUsername(String username){
+        return Pacijent;
+
+    }*/
 
     public Pacijent azurirajPacijenta(Pacijent pacijent) {
         Optional<Pacijent> existingPacijent = pacijentRepository.findById(pacijent.getId());
@@ -52,13 +59,32 @@ public class PacijentService {
         if (pacijent.getIme() == null || pacijent.getIme().isEmpty()) {
             throw new IllegalArgumentException("Ime field is required and cannot be null or empty.");
         }
-        // You can implement the registration logic here, including checking for existing usernames or emails.
-        // After validation, save the new Pacijent to the repository.
+        // Implementirajte logiku registracije ovdje, uključujući provjeru postojećih korisničkih imena ili e-mail adresa.
+        // Nakon provjere, spremite novog pacijenta u repozitorij.
         return pacijentRepository.save(pacijent);
+    }
+
+    public Pacijent loginUser(UserLoginRequest loginRequest) {
+        Pacijent pacijent = pacijentRepository.findByUsername(loginRequest.getUsername());
+        if (pacijent != null && pacijent.getLozinka().equals(loginRequest.getLozinka())) {
+            return pacijent;
+        }
+        return null;
     }
 
     public List<Pacijent> sviPacijenti() {
         return pacijentRepository.findAll();
     }
 
+    public boolean prijava(String username, String lozinka) {
+        Optional<Pacijent> pacijentOptional = dohvatiPacijentaPoUsername(username);
+        if (pacijentOptional.isPresent()) {
+            Pacijent pacijent = pacijentOptional.get();
+            // Provjerite lozinku
+            if (lozinka.equals(pacijent.getLozinka())) {
+                return true; // Lozinke se podudaraju
+            }
+        }
+        return false; // Korisničko ime ili lozinka nisu ispravni
+    }
 }
